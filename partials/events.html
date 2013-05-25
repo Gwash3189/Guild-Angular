@@ -1,0 +1,29 @@
+<div class="row" data-ng-controller="eventsController">
+    <div class="span8 offset2">
+        <div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Event Name</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-ng-repeat="event in events" data-ng-repeat="eventName in eventNames">
+                    <td>
+                         {{ event }}
+                    </td>
+                    <td>
+                        {{ eventName }}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="center span12">
+        <i class="icon-spinner icon-large icon-spin" id="spinner"></i>
+    </div>
+</div>
