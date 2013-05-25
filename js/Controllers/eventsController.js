@@ -1,40 +1,65 @@
-app.controller('eventsController', function ($scope, eventsFactory, $routeParams, $q) {
+app.controller('eventsController', function ($scope, eventsFactory, $routeParams, mapsFactory, $q) {
     function init(events) {
         var id = $routeParams.id;
         var events = eventsFactory.getEvents(id);
         var eventNames = eventsFactory.getEventNames();
-        $q.all([events, eventNames]).then(function (arrayOfResults) {
-            //arrayOfResults[0] = events
-            //arrayOfResults[1] = eventsNames
-            var events = arrayOfResults[0];
-            var results1 = getKeys(events);
-            console.log(results1);
-
-            events = arrayOfResults[1];
-            var results2 = getKeys(events);
-            console.log(results2);
-            for (var i = 0; i < results2.length; i++) {
-
-
-                if(results2[1][i].id == results1[0][i].event_id){
-                    console.log(results2[1][i].id + " DERP " + results1[0][i].event_id);
-                }
-            }
-
+        var mapsArray = getMapArray();
+        $q.all([events, eventNames, mapsArray]).then(function (arrayOfResults) {
+            var events_noNames = arrayOfResults[0];
+            var events_withNames = arrayOfResults[1];
+            events_noNames = sortArray(events_noNames, compareBasedUponId);
+            events_withNames = sortArray(events_withNames, compareBasedUponId);
+            $scope.events = combineEventArrays(events_noNames, events_withNames, mapsArray);
         });
     };
 
-    function getKeys(obj) {
-        var event_id = "event_id";
-        var id = "id";
-        var keys = [];
-        for (var i = 0; i < obj.length; i++) {
-            if (obj[i].hasOwnProperty(event_id) || obj[i].hasOwnProperty(id)) {
-                keys.push(obj[i]);
-            }
-
+    function combineEventArrays(noNames, names, mapsArray) {
+        var tmp = [];
+        for (var i = 0; i < noNames.length; i++) {
+            tmp.push({event_id: noNames[i].event_id, name: names[i].name, state: noNames[i].state, map_name: getMapNames(mapsArray, noNames[i].map_id)});
         }
-        return keys.sort();
-    };
+        return tmp;
+    }
+
+    function getMapArray() {
+        return mapsFactory.getMaps();
+    }
+
+    function getMapNames(mapsArray, id) {
+        for (var i = 0; i < mapsArray.length; i++) {
+            if (mapsArray[i].hasOwnProperty('id')) {
+                if (id == mapsArray[i].map_id) {
+                    return mapsArray.name;
+                }
+            }
+        }
+    }
+
+    function compareBasedUponId(a_id, b_id) {
+        if (a_id.hasOwnProperty('event_id')) {
+            if (a_id.event_id < b_id.event_id) {
+                return -1
+            }
+            if (a_id.event_id > b_id.event_id) {
+                return 1
+            }
+            return 0;
+        }
+        if (a_id.hasOwnProperty('id')) {
+            if (a_id.id < b_id.id) {
+                return -1
+            }
+            if (a_id.id > b_id.id) {
+                return 1
+            }
+            return 0;
+        }
+    }
+
+    function sortArray(eventArray, callback) {
+        return eventArray.sort(callback);
+    }
+
     init();
+    $scope.predicate = 'state';
 });
