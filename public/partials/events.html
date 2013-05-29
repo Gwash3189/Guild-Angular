@@ -2,12 +2,42 @@
     <h1 class="span12 center">Events</h1>
 </div>
 <div class="row">
-    <span class="span9">
-        <input class="span9" type="text" placeholder="search" data-ng-model="searchTerm.name"/>
+    <span class="span7">
+        <input class="span7" type="text" placeholder="search" data-ng-model="searchTerm.name"/>
+    </span>
+    <span >
+        <select data-ng-model="map">
+            <option value="">Maps</option>
+            <option value="Southsun Cove" >Southsun Cove</option>
+                <option value="Mount Maelstrom">Mount Maelstrom</option>
+            <option value="Sparkfly Fen">Sparkfly Fen</option>
+            <option value="Fields of Ruin">Fields of Ruin</option>
+            <option value="Wayfarer Foothills">Wayfarer Foothills</option><option value="Bloodtide Coast">Bloodtide Coast</option>
+            <option value="Dredgehaunt Cliffs">Dredgehaunt Cliffs</option>
+            <option value="Queensdale">Queensdale</option>
+            <option value="Cursed Shore">Cursed Shore</option>
+            <option value="Timberline Falls">Timberline Falls</option>
+            <option value="Iron Marches">Iron Marches</option>
+            <option value="Frostgorge Sound">Frostgorge Sound</option>
+            <option value="Snowden Drifts">Snowden Drifts</option>
+            <option value="Fireheart Rise">Fireheart Rise</option>
+            <option value="Plains of Ashford">Plains of Ashford</option>
+            <option value="Kessex Hills">Kessex Hills</option>
+            <option value="Gendarran Fields">Gendarran Fields</option>
+            <option value="Harathi Hinterlands">Harathi Hinterlands</option>
+            <option value="Metrica Province">Metrica Province</option>
+            <option value="Caledon Forest">Caledon Forest</option>
+            <option value="Diessa Plateau">Diessa Plateau</option>
+            <option value="Malchor's Leap">Malchor's Leap</option>
+            <option value="Straits of Devastation">Straits of Devastation</option>
+            <option value="Lornar's Pass">Lornar's Pass</option>
+            <option value="Brisban Wildlands">Brisban Wildlands</option>
+            <option value="Blazeridge Steppes">Blazeridge Steppes</option>
+        </select>
     </span>
     <span>
-        <select data-ng-model="selected">
-            <option value=""></option>
+        <select data-ng-model="status">
+            <option value="">Status</option>
             <option value="Active">Active</option>
             <option value="Fail">Fail</option>
             <option value="Success">Success</option>
@@ -32,7 +62,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr data-ng-repeat="event in events | filter:selected | filter:searchTerm | orderBy:predicate">
+                <tr data-ng-repeat="event in events | filter:map |  filter:status | filter:searchTerm | orderBy:predicate">
                     <td>
                          {{ event.map_name }}
                     </td>

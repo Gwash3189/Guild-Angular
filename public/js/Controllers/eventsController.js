@@ -13,7 +13,7 @@ app.controller('eventsController', function ($scope, eventsFactory, $routeParams
             events_withNames = sortArray(events_withNames, mapsFactory.shortenedCompareBasedUponId);
             $scope.events = combineEventArrays(events_noNames, events_withNames, mapsResults);
         });
-    };
+    }
 
     function combineEventArrays(noNames, names, mapsArray) {
         var tmp = [];
@@ -21,7 +21,6 @@ app.controller('eventsController', function ($scope, eventsFactory, $routeParams
             var mapName = mapsFactory.getMapNames(mapsArray, noNames[i].map_id);
             tmp.push({event_id: noNames[i].event_id, name: names[i].name, state: noNames[i].state, map_name: mapName});
         }
-        console.log(tmp.length);
         return tmp;
     }
 
