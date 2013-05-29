@@ -3,6 +3,10 @@ app.config(function ($routeProvider){
     $routeProvider
         .when('/',
         {
+            templateUrl: '../../partials/home.html'
+        })
+        .when('/worlds',
+        {
             controller: 'worldsController',
             templateUrl: '../../partials/worlds.html'
         })
