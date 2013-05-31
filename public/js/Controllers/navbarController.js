@@ -1,17 +1,20 @@
 app.controller('navbarController', function ($scope, $location){
 	$scope.navClass = function (page) {
-        var currentRoute = $location.path().substring(1) || 'home';
+        var currentRoute = $location.path().substring(1) || '';
         return page === currentRoute ? 'active' : '';
     };
 
 	$scope.navs = [
 		{
 			name: 'Home',
-			route: '/#/home'
+			route: '#/',
+			location: 'home'
 		},
 		{
 			name: 'Worlds',
-			route: '/#/worlds'
+			route: '#/worlds',
+			location: 'worlds'
 		}
 	];
+
 });

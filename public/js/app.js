@@ -1,7 +1,7 @@
 var app = angular.module('gw2', []);
 app.config(function ($routeProvider){
     $routeProvider
-        .when('/',
+        .when('/home',
         {
             templateUrl: '../../partials/home.html'
         })
@@ -10,10 +10,10 @@ app.config(function ($routeProvider){
             controller: 'worldsController',
             templateUrl: '../../partials/worlds.html'
         })
-        .when('/details/:id',
+        .when('/worlds/details/:id',
         {
             controller: 'eventsController',
             templateUrl: '../../partials/events.html'
         })
-        .otherwise({redirectTo: '/'});
+        .otherwise({redirectTo: '/home'});
 });

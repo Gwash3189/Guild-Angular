@@ -24,7 +24,7 @@
                 <tbody>
                 <tr data-ng-repeat="world in worlds | filter:searchTerm |orderBy: predicate">
                     <td>{{ world.name }}</td>
-                    <td><a data-ng-href="/#/details/{{ world.id }}">Details</a></td>
+                    <td><a data-ng-href="#/worlds/details/{{ world.id }}">Details</a></td>
                 </tr>
                 </tbody>
             </table>
