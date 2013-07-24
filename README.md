@@ -13,4 +13,7 @@ F.A.Q
     3. Next, run `node app.js` and the app will be available on your [local host port 3000](http://localhost:3000)
 
 2. **Is this thing hosted somewhere?**
-    3. At the momment it's hosted here, [Guildr](http://guild-angular.aws.af.cm/#/home)
+    1. At the momment it's hosted here, [Guildr](http://guild-angular.aws.af.cm/#/home)
+
+3. **Your website just says 'In Progress'**
+    1. The website hasn't been visited in forever. The process is just starting and should be available if you refresh the page. 
